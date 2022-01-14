@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef8f927ae3ecd84083c236f05807b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 6.5
   Player1: {fileID: 39627993}
   Player2: {fileID: 439753222}
 --- !u!4 &636034714
