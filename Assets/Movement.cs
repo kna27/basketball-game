@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float m_MoveSpeed = 6.5f;
     [SerializeField] private float m_DashSpeed = 10f;
     [SerializeField] private float m_DashCooldown = 1f;
-    [SerializeField] private int m_InputGroup;
+    public int team;
     [SerializeField] private Collider2D m_GroundCheck;
     private Collider2D m_Ground;
 
@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
         {
             m_Grounded = false;
         }
-        Move(Input.GetAxisRaw("Horizontal" + m_InputGroup), Input.GetButtonDown("Jump" + m_InputGroup));
+        Move(Input.GetAxisRaw("Horizontal" + team), Input.GetButtonDown("Jump" + team));
     }
 
     public void Move(float move, bool jump)
@@ -64,8 +64,8 @@ public class Movement : MonoBehaviour
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }
