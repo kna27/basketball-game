@@ -906,6 +906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6295de57e8dd38a4d991cf4d0cc7efd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupDelay: 1
+  throwForce: {x: 4, y: 8}
 --- !u!1 &891340484
 GameObject:
   m_ObjectHideFlags: 0

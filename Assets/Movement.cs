@@ -30,7 +30,10 @@ public class Movement : MonoBehaviour
             m_Grounded = true;
             if (!wasGrounded)
             {
-                // do stuff on land
+                if (GameManager.ballHolder == team)
+                {
+                    transform.GetChild(0).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
+                }
             }
         }
         else
@@ -59,7 +62,6 @@ public class Movement : MonoBehaviour
             Flip();
         }
     }
-
 
     private void Flip()
     {

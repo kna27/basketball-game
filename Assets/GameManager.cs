@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreOneText;
     [SerializeField] private Text scoreTwoText;
     [SerializeField] private Text debugInfo;
+
     void Update()
     {
         scoreOneText.text = scoreOne.ToString();
