@@ -41,6 +41,10 @@ public class Movement : MonoBehaviour
             m_Grounded = false;
         }
         Move(Input.GetAxisRaw("Horizontal" + team), Input.GetButtonDown("Jump" + team));
+        if(Input.GetButton("Throw" + team))
+        {
+            Throw();
+        }
     }
 
     public void Move(float move, bool jump)
@@ -62,7 +66,13 @@ public class Movement : MonoBehaviour
             Flip();
         }
     }
-
+    public void Throw()
+    {
+        if (GameManager.ballHolder == team)
+        {
+            transform.GetChild(0).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
+        }
+    }
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;
