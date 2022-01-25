@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour
             m_Grounded = true;
             if (!wasGrounded)
             {
-                if (GameManager.ballHolder == team)
+                if (GameManager.ballHolder == team && transform.childCount > 0)
                 {
                     transform.GetChild(0).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
                 }
@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
     }
     public void Throw()
     {
-        if (GameManager.ballHolder == team)
+        if (GameManager.ballHolder == team && transform.childCount > 0)
         {
             transform.GetChild(0).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
         }
