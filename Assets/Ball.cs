@@ -23,6 +23,7 @@ public class Ball : MonoBehaviour
         float throwDir = transform.parent.transform.parent.transform.lossyScale.x;
         transform.parent.transform.parent = null;
         transform.parent.GetComponent<Rigidbody2D>().simulated = true;
+        transform.parent.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         transform.parent.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(throwForce.x * throwDir, throwForce.y), ForceMode2D.Impulse);
         pickupTime = pickupDelay;
         GetComponent<Collider2D>().enabled = true;
