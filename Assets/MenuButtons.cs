@@ -35,13 +35,13 @@ public class MenuButtons : MonoBehaviour
 
     private void ShowSettings()
     {
-
+        settingsPanel.SetActive(true);
         settingsShown = true;
     }
 
     private void HideSettings()
     {
-
+        settingsPanel.SetActive(false);
         settingsShown = false;
     }
 }
