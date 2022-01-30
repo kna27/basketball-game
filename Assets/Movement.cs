@@ -15,7 +15,8 @@ public class Movement : MonoBehaviour
     const float k_MaxX = 10f;
     private bool m_Grounded;
     private bool m_FacingRight = true;
-
+    private int landThrowCooldown;
+    [SerializeField] private bool jumpedWithBall;
 
     private void Awake()
     {
@@ -28,12 +29,9 @@ public class Movement : MonoBehaviour
         if (m_GroundCheck.Distance(m_Ground).distance < k_GroundedRadius)
         {
             m_Grounded = true;
-            if (!wasGrounded)
+            if (!wasGrounded && jumpedWithBall)
             {
-                if (GameManager.ballHolder == team && transform.childCount > 0)
-                {
-                    transform.GetChild(0).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
-                }
+                Throw();
             }
         }
         else
@@ -45,6 +43,7 @@ public class Movement : MonoBehaviour
         {
             Throw();
         }
+        landThrowCooldown -= landThrowCooldown > 0 ? 1 : 0;
     }
 
     public void Move(float move, bool jump)
@@ -52,32 +51,19 @@ public class Movement : MonoBehaviour
         if (m_Grounded && jump)
         {
             m_Grounded = false;
+            landThrowCooldown = 10;
+            jumpedWithBall = transform.childCount > 0;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, m_JumpForce));
         }
         transform.Translate(move * Time.deltaTime * m_MoveSpeed, 0, 0);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, k_MinX, k_MaxX), transform.position.y, 0);
-
-        if (move > 0 && !m_FacingRight)
-        {
-            Flip();
-        }
-        else if (move < 0 && m_FacingRight)
-        {
-            Flip();
-        }
     }
     public void Throw()
     {
-        if (GameManager.ballHolder == team && transform.childCount > 0)
+        if (GameManager.ballHolder == team && transform.childCount > 0 && landThrowCooldown <= 0)
         {
             transform.GetChild(0).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
+            jumpedWithBall = false;
         }
-    }
-    private void Flip()
-    {
-        m_FacingRight = !m_FacingRight;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
     }
 }
