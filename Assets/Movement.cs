@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     private bool m_Grounded;
     private bool m_FacingRight = true;
     private int landThrowCooldown;
-    [SerializeField] private bool jumpedWithBall;
+    private bool jumpedWithBall;
 
     private void Awake()
     {
