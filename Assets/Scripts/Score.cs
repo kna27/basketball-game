@@ -12,14 +12,7 @@ public class Score : MonoBehaviour
         {
             if (team != GameManager.ballHolder)
             {
-                if (team == 1)
-                {
-                    GameManager.scoreTwo++;
-                }
-                else
-                {
-                    GameManager.scoreOne++;
-                }
+                GameManager.ChangeScore(team, 1);
             }
         }
 
