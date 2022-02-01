@@ -30,14 +30,13 @@ public class Ball : MonoBehaviour
         float throwDir = transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? 1 : -1;
         transform.parent.transform.parent = null;
         rb.simulated = true;
-        rb.velocity = Vector2.zero;
-        rb.AddRelativeForce(new Vector2(throwForce.x * throwDir, throwForce.y), ForceMode2D.Impulse);
+        rb.velocity = new Vector2(throwForce.x * throwDir, throwForce.y);
         pickupTime = pickupDelay;
         GetComponent<Collider2D>().enabled = true;
     }
 
     private void Update()
-    {   
+    {
         pickupTime -= pickupTime <= 0 ? 0f : Time.deltaTime;
     }
 }
