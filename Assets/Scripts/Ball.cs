@@ -23,10 +23,10 @@ public class Ball : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             transform.parent.transform.localPosition = new Vector3(1f, 0.5f, 0f);
         }
-        else
+        else if (LayerMask.LayerToName(col.gameObject.layer) != "Player")
         {
             GetComponent<AudioSource>().Play();
-            Debug.Log("playing");
+            Debug.Log("playing from col with " + col.name);
         }
     }
 
