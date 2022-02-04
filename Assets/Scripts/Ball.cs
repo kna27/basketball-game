@@ -26,7 +26,6 @@ public class Ball : MonoBehaviour
         else if (LayerMask.LayerToName(col.gameObject.layer) != "Player")
         {
             GetComponent<AudioSource>().Play();
-            Debug.Log("playing from col with " + col.name);
         }
     }
 
