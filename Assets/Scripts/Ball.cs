@@ -27,11 +27,12 @@ public class Ball : MonoBehaviour
 
     public void ThrowBall()
     {
-        float distToNet = Vector3.Distance(transform.position, GameObject.Find(transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? "Goal2" : "Goal1").transform.position);
+        float distToNet = Vector3.Distance(transform.position, GameObject.Find(transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? "Goal2" : "Goal1").transform.position) / 10;
+        Debug.Log(distToNet);
         float throwDir = transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? 1 : -1;
         transform.parent.transform.parent = null;
         rb.simulated = true;
-        rb.velocity = new Vector2(throwForce.x * throwDir, throwForce.y) * (distToNet / 10f);
+        rb.velocity = new Vector2(throwForce.x * throwDir * distToNet, throwForce.y);
         pickupTime = pickupDelay;
         GetComponent<Collider2D>().enabled = true;
     }
