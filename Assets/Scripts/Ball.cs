@@ -23,6 +23,11 @@ public class Ball : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             transform.parent.transform.localPosition = new Vector3(1f, 0.5f, 0f);
         }
+        else
+        {
+            GetComponent<AudioSource>().Play();
+            Debug.Log("playing");
+        }
     }
 
     public void ThrowBall()
