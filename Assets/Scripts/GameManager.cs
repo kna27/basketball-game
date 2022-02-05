@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,16 +11,22 @@ public class GameManager : MonoBehaviour
     public static int ballHolder;
     public static int scoreOne = 0;
     public static int scoreTwo = 0;
+    public static float timeLeft;
     [SerializeField] private Text scoreOneText;
     [SerializeField] private Text scoreTwoText;
-    [SerializeField] private Text debugInfo;
+    [SerializeField] private Text timeText;
+    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private static float scoreTimeout = 0.5f;
     public static float waitTime;
     private void Start()
     {
+        scoreOne = 0;
+        scoreTwo = 0;
         player1Pos = GameObject.Find("Player1").transform.position;
         player2Pos = GameObject.Find("Player2").transform.position;
         bal = GameObject.Find("Ball").transform.position;
+        timeLeft = 5;
+        gameOverPanel.SetActive(false);
 
     }
 
@@ -29,7 +34,12 @@ public class GameManager : MonoBehaviour
     {
         scoreOneText.text = scoreOne.ToString();
         scoreTwoText.text = scoreTwo.ToString();
-        debugInfo.text = string.Format("Ball Holder: {0}", ballHolder);
+        timeText.text = timeLeft <= 0 ? "0.0" : timeLeft.ToString("F1");
+        timeLeft -= timeLeft <= 0 ? 0 : Time.deltaTime;
+        if (timeLeft <= 0)
+        {
+            EndGame(gameOverPanel);
+        }
     }
 
     public static void ChangeScore(int team, int score)
@@ -66,4 +76,19 @@ public class GameManager : MonoBehaviour
         ResetGame();
     }
 
+    private static void EndGame(GameObject endPanel)
+    {
+        endPanel.SetActive(true);
+        endPanel.transform.GetChild(0).GetComponent<Text>().text = "Player " + (scoreOne >= scoreTwo ? "1" : "2") + " won!";
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
