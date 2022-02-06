@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float m_DashSpeed = 10f;
     [SerializeField] private float m_DashCooldown = 1f;
     public int team;
+    private Animator animator;
     [SerializeField] private Collider2D m_GroundCheck;
     private Collider2D m_Ground;
 
@@ -21,6 +22,7 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         m_Ground = GameObject.Find("Ground").GetComponent<Collider2D>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Update()
@@ -48,6 +50,18 @@ public class Movement : MonoBehaviour
 
     public void Move(float move, bool jump)
     {
+        if (m_Grounded && jump)
+        {
+            animator.Play("Jump");
+        }
+        else if (move != 0)
+        {
+            animator.Play("Walk");
+        }
+        else
+        {
+            animator.Play("Idle");
+        }
         if (m_Grounded && jump)
         {
             m_Grounded = false;
