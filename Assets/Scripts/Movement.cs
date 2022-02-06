@@ -60,9 +60,9 @@ public class Movement : MonoBehaviour
     }
     public void Throw()
     {
-        if (GameManager.ballHolder == team && transform.childCount > 0 && landThrowCooldown <= 0)
+        if (GameManager.ballHolder == team && transform.childCount > 1 && landThrowCooldown <= 0)
         {
-            transform.GetChild(0).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
+            transform.GetChild(1).transform.GetChild(0).GetComponent<Ball>().ThrowBall();
             jumpedWithBall = false;
         }
     }
