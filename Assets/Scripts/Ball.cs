@@ -4,6 +4,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private float pickupDelay = 1f;
     [SerializeField] private Vector2 throwForce;
+    public float distToNetOnThrow;
     private float pickupTime = 0f;
     private Rigidbody2D rb;
 
@@ -31,12 +32,12 @@ public class Ball : MonoBehaviour
 
     public void ThrowBall()
     {
-        float distToNet = Vector3.Distance(transform.position, GameObject.Find(transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? "Goal2" : "Goal1").transform.position) / 10;
-        Debug.Log(distToNet);
+        distToNetOnThrow = Vector3.Distance(transform.position, GameObject.Find(transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? "Goal2" : "Goal1").transform.position) / 10;
+        Debug.Log(distToNetOnThrow);
         float throwDir = transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? 1 : -1;
         transform.parent.transform.parent = null;
         rb.simulated = true;
-        rb.velocity = new Vector2(throwForce.x * throwDir * distToNet, throwForce.y);
+        rb.velocity = new Vector2(throwForce.x * throwDir * distToNetOnThrow, throwForce.y);
         pickupTime = pickupDelay;
         GetComponent<Collider2D>().enabled = true;
     }

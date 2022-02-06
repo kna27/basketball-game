@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         player1Pos = GameObject.Find("Player1").transform.position;
         player2Pos = GameObject.Find("Player2").transform.position;
         bal = GameObject.Find("Ball").transform.position;
-        timeLeft = 5;
+        timeLeft = 60;
         gameOverPanel.SetActive(false);
 
     }
