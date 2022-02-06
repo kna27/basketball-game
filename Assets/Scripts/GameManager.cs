@@ -4,10 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static Vector3 player1Pos;
-    private static Vector3 player2Pos;
-    private static Vector3 bal;
-
+    private static Vector3 player1Pos = new Vector3(-8.5f, -2.49f, 0);
+    private static Vector3 player2Pos = new Vector3(8.5f, -2.49f, 0);
+    private static int newParentPlayer;
     public static int ballHolder;
     public static int scoreOne = 0;
     public static int scoreTwo = 0;
@@ -22,9 +21,6 @@ public class GameManager : MonoBehaviour
     {
         scoreOne = 0;
         scoreTwo = 0;
-        player1Pos = GameObject.Find("Player1").transform.position;
-        player2Pos = GameObject.Find("Player2").transform.position;
-        bal = GameObject.Find("Ball").transform.position;
         timeLeft = 60;
         gameOverPanel.SetActive(false);
 
@@ -44,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public static void ChangeScore(int team, int score)
     {
+        newParentPlayer = team;
         waitTime = scoreTimeout;
         if (team == 1)
         {
@@ -53,18 +50,17 @@ public class GameManager : MonoBehaviour
         {
             scoreOne += score;
         }
-        DisplayText("Team " + team + " scored");
+        DisplayText("Team " + (team == 1 ? 2 : 1) + " scored");
     }
-
-
-
+    
     private static void ResetGame()
     {
         GameObject.Find("Player1").transform.position = player1Pos;
         GameObject.Find("Player2").transform.position = player2Pos;
         GameObject.Find("Ball").GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GameObject.Find("Ball").transform.position = bal;
+        GameObject.Find("Ball").transform.GetChild(0).GetComponent<Ball>().ParentBall(GameObject.Find("Player" + newParentPlayer).transform);
     }
+
     private void FixedUpdate()
     {
         waitTime -= waitTime <= 0f ? 0 : Time.deltaTime;

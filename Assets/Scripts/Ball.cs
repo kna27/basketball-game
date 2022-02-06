@@ -17,17 +17,22 @@ public class Ball : MonoBehaviour
     {
         if (LayerMask.LayerToName(col.gameObject.layer) == "Player" && pickupTime <= 0f)
         {
-            GameManager.ballHolder = col.gameObject.GetComponent<Movement>().team;
-            transform.parent.transform.parent = col.transform;
-            rb.simulated = false;
-            rb.velocity = Vector2.zero;
-            GetComponent<Collider2D>().enabled = false;
-            transform.parent.transform.localPosition = new Vector3(1f, 0.5f, 0f);
+            ParentBall(col.transform);
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) != "Player")
         {
             GetComponent<AudioSource>().Play();
         }
+    }
+
+    public void ParentBall(Transform parent)
+    {
+        GameManager.ballHolder = parent.gameObject.GetComponent<Movement>().team;
+        transform.parent.transform.parent = parent;
+        rb.simulated = false;
+        rb.velocity = Vector2.zero;
+        GetComponent<Collider2D>().enabled = false;
+        transform.parent.transform.localPosition = new Vector3(1f, 0.5f, 0f);
     }
 
     public void ThrowBall()
