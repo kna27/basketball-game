@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39627993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.57, y: -2.49, z: 0}
+  m_LocalPosition: {x: -1.88, y: -2.49, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 2126427790}
@@ -354,6 +354,7 @@ MonoBehaviour:
   m_DashCooldown: 1
   team: 1
   m_GroundCheck: {fileID: 39627999}
+  jumpedWithBall: 0
 --- !u!61 &39627999
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -409,8 +410,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43173914}
   m_LocalRotation: {x: 0, y: 0.2164396, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: -9.8507, y: 1.154, z: 0.2413}
-  m_LocalScale: {x: 2.8113296, y: 0.2656005, z: 1}
+  m_LocalPosition: {x: -9.6, y: 1.15, z: 0.1}
+  m_LocalScale: {x: 1.75, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -643,6 +644,7 @@ MonoBehaviour:
   m_DashCooldown: 1
   team: 2
   m_GroundCheck: {fileID: 155091779}
+  jumpedWithBall: 0
 --- !u!61 &155091782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -728,7 +730,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155091778}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.57, y: -2.49, z: 0}
+  m_LocalPosition: {x: 1.88, y: -2.49, z: 0}
   m_LocalScale: {x: -0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 390583750}
@@ -1233,7 +1235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupDelay: 0.5
-  throwForce: {x: 6, y: 14}
+  throwForce: {x: 6, y: 13.69}
   distToNetOnThrow: 0
 --- !u!82 &633388995
 AudioSource:
@@ -2504,7 +2506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845701385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 633388992}
@@ -2772,8 +2774,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969584568}
   m_LocalRotation: {x: 0, y: 0.2164396, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: 9.8507, y: 1.154, z: 0.2413}
-  m_LocalScale: {x: 2.8113296, y: 0.2656005, z: 1}
+  m_LocalPosition: {x: 9.7, y: 1.15, z: 0.05}
+  m_LocalScale: {x: 1.75, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
