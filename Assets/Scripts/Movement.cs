@@ -15,9 +15,8 @@ public class Movement : MonoBehaviour
     const float k_MinX = -10f;
     const float k_MaxX = 10f;
     private bool m_Grounded;
-    private bool m_FacingRight = true;
     private int landThrowCooldown;
-    private bool jumpedWithBall;
+    public bool jumpedWithBall;
 
     private void Awake()
     {
@@ -33,7 +32,7 @@ public class Movement : MonoBehaviour
             m_Grounded = true;
             if (!wasGrounded && jumpedWithBall)
             {
-                Throw();
+              Throw();
             }
         }
         else

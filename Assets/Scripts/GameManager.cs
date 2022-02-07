@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
         GameObject.Find("Player1").transform.position = player1Pos;
         GameObject.Find("Player2").transform.position = player2Pos;
         GameObject.Find("Ball").GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GameObject.Find("Player1").GetComponent<Movement>().jumpedWithBall = false;
+        GameObject.Find("Player2").GetComponent<Movement>().jumpedWithBall = false;
         GameObject.Find("Ball").transform.GetChild(0).GetComponent<Ball>().ParentBall(GameObject.Find("Player" + newParentPlayer).transform);
     }
 

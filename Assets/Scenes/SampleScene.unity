@@ -232,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 39627993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.57, y: -2.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 2126427790}
   m_Father: {fileID: 0}
@@ -729,7 +729,7 @@ Transform:
   m_GameObject: {fileID: 155091778}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.57, y: -2.49, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: -0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 390583750}
   m_Father: {fileID: 0}
@@ -2964,6 +2964,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8bf85f3fd5cef514fad48753fa955cd6, type: 3}
+    - target: {fileID: 752822013208612910, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 74ee2f1bf9a7d43f1a32791b6ba52b6f, type: 3}
     - target: {fileID: 752822013412504464, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
       propertyPath: m_RootOrder
       value: 0
