@@ -10,7 +10,7 @@ public class Score : MonoBehaviour
         {
             if (team != GameManager.ballHolder && GameManager.waitTime <= 0f)
             {
-                GameManager.ChangeScore(team, col.transform.GetChild(0).GetComponent<Ball>().distToNetOnThrow >= 1.25 ? 3 : 2);
+                GameManager.ChangeScore(team, col.transform.GetChild(0).GetComponent<Ball>().distToNetOnThrow >= 1.02 ? 3 : 2);
             }
         }
     }
