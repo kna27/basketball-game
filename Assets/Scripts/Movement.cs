@@ -48,7 +48,6 @@ public class Movement : MonoBehaviour
         {
             if (dashWaitTimer <= 0)
             {
-                Debug.Log("double tap");
                 dashDurationTimer = m_DashDuration;
                 dashWaitTimer = m_DashCooldown;
             }
@@ -83,6 +82,7 @@ public class Movement : MonoBehaviour
             jumpedWithBall = transform.childCount > 0;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, m_JumpForce));
         }
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = dash ? new Color(0, 255, 0) : new Color(255, 255, 255);
         transform.Translate(move * Time.deltaTime * (dash ? m_DashSpeed : m_MoveSpeed), 0, 0);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, k_MinX, k_MaxX), transform.position.y, 0);
     }
