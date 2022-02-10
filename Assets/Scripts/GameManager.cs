@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static Vector3 player1Pos = new Vector3(-8.5f, -2.49f, 0);
-    private static Vector3 player2Pos = new Vector3(8.5f, -2.49f, 0);
+    private static Vector3 player1Pos = new Vector3(-6f, -2.49f, 0);
+    private static Vector3 player2Pos = new Vector3(6f, -2.49f, 0);
     private static int newParentPlayer;
     public static int ballHolder;
     public static int scoreOne = 0;
