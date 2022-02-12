@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,12 +20,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private static float scoreTimeout = 0.5f;
     public static float waitTime;
-
+    public static bool gameStarted = false;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private AudioMixer musicMixer;
     [SerializeField] private Slider volume;
     [SerializeField] private AudioMixer sfxMixer;
-
+    [SerializeField] private static Score scoreObj;
     private bool musicEnabled = true;
     private bool sfxEnabled = true;
 
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+        scoreObj = GameObject.Find("Goal1").GetComponent<Score>();
     }
 
     void Update()
@@ -67,11 +70,12 @@ public class GameManager : MonoBehaviour
         {
             scoreOne += score;
         }
-        DisplayText("Team " + (team == 1 ? 2 : 1) + " scored");
+        scoreObj.DisplayText("Team " + (team == 1 ? 2 : 1) + " scored", player1Pos, player2Pos, newParentPlayer);
     }
     
-    private static void ResetGame()
+    public IEnumerator ResetGame()
     {
+        yield return new WaitForSeconds(2);
         GameObject.Find("Player1").transform.position = player1Pos;
         GameObject.Find("Player2").transform.position = player2Pos;
         GameObject.Find("Ball").GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -83,12 +87,6 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         waitTime -= waitTime <= 0f ? 0 : Time.deltaTime;
-    }
-
-    public static void DisplayText(string text)
-    {
-        Debug.Log(text);
-        ResetGame();
     }
 
     private static void EndGame(GameObject endPanel)
