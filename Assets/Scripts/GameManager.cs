@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         {
             scoreOne += score;
         }
-        scoreObj.DisplayText("Team " + (team == 1 ? 2 : 1) + " scored", player1Pos, player2Pos, newParentPlayer);
+        scoreObj.DisplayText(score + " point!", player1Pos, player2Pos, newParentPlayer);
     }
     
     public IEnumerator ResetGame()
