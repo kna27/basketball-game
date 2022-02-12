@@ -4,6 +4,12 @@ using System.Collections;
 public class Score : MonoBehaviour
 {
     public int team;
+    private static DisableColliders disabled;
+
+    void Start()
+    {
+        disabled = GameObject.Find("Game Manager").GetComponent<DisableColliders>();
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -22,6 +28,7 @@ public class Score : MonoBehaviour
     }
     public IEnumerator ResetGame(Vector3 player1Pos, Vector3 player2Pos, int newParentPlayer)
     {
+        disabled.DisableCollider();
         yield return new WaitForSeconds(2);
         GameObject.Find("Player1").transform.position = player1Pos;
         GameObject.Find("Player2").transform.position = player2Pos;
