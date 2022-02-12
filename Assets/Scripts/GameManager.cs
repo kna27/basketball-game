@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -17,13 +18,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private static float scoreTimeout = 0.5f;
     public static float waitTime;
+
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private AudioMixer musicMixer;
+    [SerializeField] private Slider volume;
+    [SerializeField] private AudioMixer sfxMixer;
+
+    private bool musicEnabled = true;
+    private bool sfxEnabled = true;
+
     private void Start()
     {
         scoreOne = 0;
         scoreTwo = 0;
         timeLeft = 60;
         gameOverPanel.SetActive(false);
-
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -35,6 +46,12 @@ public class GameManager : MonoBehaviour
         if (timeLeft <= 0)
         {
             EndGame(gameOverPanel);
+        }
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+            Time.timeScale = pauseMenu.activeInHierarchy ? 0 : 1;
         }
     }
 
@@ -88,5 +105,29 @@ public class GameManager : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void MusicEnabled(bool enabled)
+    {
+        musicEnabled = enabled;
+        musicMixer.SetFloat("volume", enabled ? volume.value : -80);
+    }
+
+    public void SfxEnabled(bool enabled)
+    {
+        sfxEnabled = enabled;
+        sfxMixer.SetFloat("volume", enabled ? volume.value : -80);
+    }
+
+    public void SetVolume(float vol)
+    {
+        musicMixer.SetFloat("volume", musicEnabled ? vol : -80);
+        sfxMixer.SetFloat("volume", sfxEnabled ? vol : -80);
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 }
