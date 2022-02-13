@@ -40,7 +40,7 @@ public class Movement : MonoBehaviour
             m_Grounded = true;
             if (!wasGrounded && jumpedWithBall)
             {
-                Throw();
+                // Throw();
             }
         }
         else
