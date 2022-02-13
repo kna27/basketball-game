@@ -35,7 +35,8 @@ public class Score : MonoBehaviour
     }
     public void DisplayText(string text, Vector3 player1Pos, Vector3 player2Pos, int newParentPlayer)
     {
-        GameObject textObj = (GameObject) Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Prefabs/textTemplate.prefab", typeof(GameObject)), GameObject.Find("Canvas").transform);
+        GameObject textObj = Instantiate(GameObject.Find("textTemplate"), GameObject.Find("Canvas").transform);
+        textObj.GetComponent<PopupText>().enabled = true;
         textObj.GetComponent<Text>().text = text;
         StartCoroutine(ResetGame(player1Pos, player2Pos, newParentPlayer));
 
