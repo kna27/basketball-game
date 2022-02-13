@@ -3,7 +3,6 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviour
         timeLeft -= timeLeft <= 0 ? 0 : Time.deltaTime;
         if (timeLeft <= 0)
         {
-            EndGame(gameOverPanel);
+            scoreObj.GameEnd(gameOverPanel, scoreOne, scoreTwo);
         }
 
         if (Input.GetButtonDown("Pause"))
@@ -87,12 +86,6 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         waitTime -= waitTime <= 0f ? 0 : Time.deltaTime;
-    }
-
-    private static void EndGame(GameObject endPanel)
-    {
-        endPanel.SetActive(true);
-        endPanel.transform.GetChild(0).GetComponent<Text>().text = "Player " + (scoreOne >= scoreTwo ? "1" : "2") + " won!";
     }
 
     public void RestartGame()

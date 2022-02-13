@@ -29,6 +29,7 @@ public class Score : MonoBehaviour
         textObj.GetComponent<Text>().text = text;
         StartCoroutine(ResetGame(player1Pos, player2Pos, newParentPlayer));
     }
+
     public IEnumerator ResetGame(Vector3 player1Pos, Vector3 player2Pos, int newParentPlayer)
     {
         disabled.DisableCollider();
@@ -43,5 +44,20 @@ public class Score : MonoBehaviour
         GameObject.Find("Player1").GetComponent<Movement>().enabled = true;
         GameObject.Find("Player2").GetComponent<Movement>().enabled = true;
         GameObject.Find("Ball").transform.GetChild(0).GetComponent<Ball>().ParentBall(GameObject.Find("Player" + newParentPlayer).transform);
+    }
+
+    public void GameEnd(GameObject endPanel, int scoreOne, int scoreTwo)
+    {
+        StartCoroutine(GameEndWait(endPanel, scoreOne, scoreTwo));
+    }
+
+    public IEnumerator GameEndWait(GameObject endPanel, int scoreOne, int scoreTwo)
+    {
+        GameObject.Find("Player1").GetComponent<Movement>().enabled = false;
+        GameObject.Find("Player2").GetComponent<Movement>().enabled = false;
+        yield return new WaitForSeconds(2);
+        GameObject.Find("Ball").GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        endPanel.SetActive(true);
+        endPanel.transform.GetChild(0).GetComponent<Text>().text = "Player " + (scoreOne >= scoreTwo ? "1" : "2") + " won!";
     }
 }
