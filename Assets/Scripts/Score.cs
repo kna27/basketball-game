@@ -7,6 +7,7 @@ public class Score : MonoBehaviour
 {
     public int team;
     private static DisableColliders disabled;
+    public bool canScore = true;
 
     void Start()
     {
@@ -17,10 +18,19 @@ public class Score : MonoBehaviour
     {
         if(col.transform.name == "Ball")
         {
-            if (team != GameManager.ballHolder && GameManager.waitTime <= 0f)
+            if (team != GameManager.ballHolder && GameManager.waitTime <= 0f && canScore)
             {
+                canScore = false;
                 GameManager.ChangeScore(team, col.transform.GetChild(0).GetComponent<Ball>().distToNetOnThrow >= 1.02 ? 3 : 2);
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.transform.name == "Ball")
+        {
+            canScore = true;
         }
     }
     public void DisplayText(string text, Vector3 player1Pos, Vector3 player2Pos, int newParentPlayer)
@@ -28,6 +38,7 @@ public class Score : MonoBehaviour
         GameObject textObj = (GameObject) Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Prefabs/textTemplate.prefab", typeof(GameObject)), GameObject.Find("Canvas").transform);
         textObj.GetComponent<Text>().text = text;
         StartCoroutine(ResetGame(player1Pos, player2Pos, newParentPlayer));
+
     }
 
     public IEnumerator ResetGame(Vector3 player1Pos, Vector3 player2Pos, int newParentPlayer)
