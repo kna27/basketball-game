@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DisableColliders : MonoBehaviour
@@ -11,6 +9,14 @@ public class DisableColliders : MonoBehaviour
         foreach(Collider2D col in colliders)
         {
             col.enabled = false;
+        }
+    }
+
+    public void EnableCollider()
+    {
+        foreach (Collider2D col in colliders)
+        {
+            col.enabled = true;
         }
     }
 }
