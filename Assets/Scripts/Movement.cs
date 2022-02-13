@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     private bool m_Grounded;
     private int landThrowCooldown;
     public bool jumpedWithBall;
-    private bool stunned;
+    public bool stunned;
 
     private void Awake()
     {
@@ -121,7 +121,8 @@ public class Movement : MonoBehaviour
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
         if (GameManager.ballHolder == team && transform.childCount > 1 && landThrowCooldown <= 0)
         {
-            Throw();
+            transform.GetChild(1).transform.GetChild(0).GetComponent<Ball>().DropBall();
+            jumpedWithBall = false;
         }
         animator.Play("Stunned");
         StartCoroutine(Stunned());

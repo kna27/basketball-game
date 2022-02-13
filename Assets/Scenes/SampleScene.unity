@@ -441,6 +441,7 @@ MonoBehaviour:
   team: 1
   m_GroundCheck: {fileID: 39627999}
   jumpedWithBall: 0
+  stunned: 0
 --- !u!61 &39627999
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1014,6 +1015,7 @@ MonoBehaviour:
   team: 2
   m_GroundCheck: {fileID: 155091779}
   jumpedWithBall: 0
+  stunned: 0
 --- !u!61 &155091782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1738,7 +1740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6295de57e8dd38a4d991cf4d0cc7efd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupDelay: 0.5
+  pickupDelay: 0.1
   throwForce: {x: 6, y: 13.69}
   distToNetOnThrow: 0
 --- !u!82 &633388995

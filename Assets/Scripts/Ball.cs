@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] private float pickupDelay = 1f;
+    [SerializeField] private float pickupDelay = 0.1f;
     [SerializeField] private Vector2 throwForce;
     public float distToNetOnThrow;
     private float pickupTime = 0f;
@@ -17,7 +17,10 @@ public class Ball : MonoBehaviour
     {
         if (LayerMask.LayerToName(col.gameObject.layer) == "Player" && pickupTime <= 0f)
         {
-            ParentBall(col.transform);
+            if (!col.GetComponent<Movement>().stunned)
+            {
+                ParentBall(col.transform);
+            }
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) != "Player")
         {
@@ -38,11 +41,20 @@ public class Ball : MonoBehaviour
     public void ThrowBall()
     {
         distToNetOnThrow = Vector3.Distance(transform.position, GameObject.Find(transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? "Goal2" : "Goal1").transform.position) / 10;
-        Debug.Log(distToNetOnThrow);
         float throwDir = transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? 1 : -1;
         transform.parent.transform.parent = null;
         rb.simulated = true;
         rb.velocity = new Vector2(throwForce.x * throwDir * distToNetOnThrow, throwForce.y);
+        pickupTime = pickupDelay;
+        GetComponent<Collider2D>().enabled = true;
+    }
+
+    public void DropBall()
+    {
+        float throwDir = transform.parent.transform.parent.GetComponent<Movement>().team == 1 ? 1 : -1;
+        transform.parent.transform.parent = null;
+        rb.simulated = true;
+        rb.velocity = new Vector2(throwForce.x * throwDir / 5, 1);
         pickupTime = pickupDelay;
         GetComponent<Collider2D>().enabled = true;
     }
