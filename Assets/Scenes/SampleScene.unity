@@ -437,6 +437,7 @@ MonoBehaviour:
   m_DashDuration: 0.25
   dashDurationTimer: 0
   dashWaitTimer: 0
+  other: {fileID: 155091781}
   team: 1
   m_GroundCheck: {fileID: 39627999}
   jumpedWithBall: 0
@@ -1009,6 +1010,7 @@ MonoBehaviour:
   m_DashDuration: 0.25
   dashDurationTimer: 0
   dashWaitTimer: 0
+  other: {fileID: 39627998}
   team: 2
   m_GroundCheck: {fileID: 155091779}
   jumpedWithBall: 0
@@ -4909,6 +4911,30 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 74ee2f1bf9a7d43f1a32791b6ba52b6f, type: 3}
+    - target: {fileID: 752822013208612911, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.733
+      objectReference: {fileID: 0}
+    - target: {fileID: 752822013208612911, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 752822013208612911, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 752822013208612911, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 752822013208612911, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 752822013208612911, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 752822013412504464, guid: 2aa3f45c46b77e9459c117bbee354d0d, type: 3}
       propertyPath: m_RootOrder
       value: 0
