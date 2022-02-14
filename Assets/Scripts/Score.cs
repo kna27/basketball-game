@@ -47,6 +47,8 @@ public class Score : MonoBehaviour
         disabled.DisableCollider();
         GameObject.Find("Player1").GetComponent<Movement>().enabled = false;
         GameObject.Find("Player2").GetComponent<Movement>().enabled = false;
+        GameObject.Find("Player" + newParentPlayer).transform.GetChild(0).GetComponent<Animator>().Play("Cry");
+        GameObject.Find("Player" + (newParentPlayer == 1 ? 2 : 1)).transform.GetChild(0).GetComponent<Animator>().Play("Win");
         yield return new WaitForSeconds(2);
         disabled.EnableCollider();
         GameObject.Find("Player1").transform.position = player1Pos;
