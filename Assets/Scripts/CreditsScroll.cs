@@ -22,5 +22,9 @@ public class CreditsScroll : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+        if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
