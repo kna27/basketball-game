@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
                 ParentBall(col.transform);
             }
         }
-        else if (LayerMask.LayerToName(col.gameObject.layer) != "Player")
+        else if (LayerMask.LayerToName(col.gameObject.layer) != "Player" && col.name != "hand_right")
         {
             GetComponent<AudioSource>().Play();
         }
