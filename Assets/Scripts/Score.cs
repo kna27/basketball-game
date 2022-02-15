@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEditor;
 
 public class Score : MonoBehaviour
 {
@@ -20,6 +19,7 @@ public class Score : MonoBehaviour
         {
             if (team != GameManager.ballHolder && GameManager.waitTime <= 0f && canScore)
             {
+                GetComponent<AudioSource>().Play();
                 canScore = false;
                 GameManager.ChangeScore(team, col.transform.GetChild(0).GetComponent<Ball>().distToNetOnThrow >= 1.02 ? 3 : 2);
             }
