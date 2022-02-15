@@ -28,13 +28,22 @@ public class GameManager : MonoBehaviour
     private bool musicEnabled = true;
     private bool sfxEnabled = true;
 
+    [SerializeField] private GameObject characterSelectPanel;
+    [SerializeField] private GameObject mainUIPanel;
+    [SerializeField] private ToggleGroup maskToggleGroup;
+    [SerializeField] private ToggleGroup noMaskToggleGroup;
+
     private void Start()
     {
         scoreOne = 0;
         scoreTwo = 0;
-        timeLeft = 60;
+        mainUIPanel.SetActive(false);
+        characterSelectPanel.SetActive(true);
         gameOverPanel.SetActive(false);
         pauseMenu.SetActive(false);
+        GameObject.Find("Player1").GetComponent<Movement>().enabled = false;
+        GameObject.Find("Player2").GetComponent<Movement>().enabled = false;
+        GameObject.Find("Ball").GetComponent<Rigidbody2D>().simulated = false;
         Time.timeScale = 1;
         scoreObj = GameObject.Find("Goal1").GetComponent<Score>();
     }
@@ -44,8 +53,8 @@ public class GameManager : MonoBehaviour
         scoreOneText.text = scoreOne.ToString();
         scoreTwoText.text = scoreTwo.ToString();
         timeText.text = timeLeft <= 0 ? "0.0" : timeLeft.ToString("F1");
-        timeLeft -= timeLeft <= 0 ? 0 : Time.deltaTime;
-        if (timeLeft <= 0)
+        timeLeft -= timeLeft <= 0 && gameStarted ? 0 : Time.deltaTime;
+        if (timeLeft <= 0 && gameStarted)
         {
             scoreObj.GameEnd(gameOverPanel, scoreOne, scoreTwo);
         }
@@ -120,5 +129,18 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void StartGame()
+    {
+        GameObject.Find("Player1").transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = maskToggleGroup.GetFirstActiveToggle().gameObject.transform.GetChild(0).GetComponent<Image>().sprite;
+        GameObject.Find("Player2").transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = noMaskToggleGroup.GetFirstActiveToggle().gameObject.transform.GetChild(0).GetComponent<Image>().sprite;
+        timeLeft = 60;
+        gameStarted = true;
+        mainUIPanel.SetActive(true);
+        characterSelectPanel.SetActive(false);
+        GameObject.Find("Player1").GetComponent<Movement>().enabled = true;
+        GameObject.Find("Player2").GetComponent<Movement>().enabled = true;
+        GameObject.Find("Ball").GetComponent<Rigidbody2D>().simulated = true;
     }
 }
